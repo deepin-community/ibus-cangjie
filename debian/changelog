@@ -1,5 +1,152 @@
-template-repository (1.0-1) unstable; urgency=medium
+ibus-cangjie (2.4-7) unstable; urgency=medium
 
-  * Initial release
+  * Team upload.
+  * Work around mesa bug https://bugs.debian.org/1025312
+    + Version 2.4-6 failed to build due to that bug (closes: #1025332).
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Janitor ]
+  * Set upstream metadata fields: Bug-Database, Repository-Browse.
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Fri, 02 Dec 2022 20:55:43 +0100
+
+ibus-cangjie (2.4-6) unstable; urgency=medium
+
+  * Team upload.
+  * Fix broken debian/watch
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Fri, 02 Dec 2022 01:33:53 +0100
+
+ibus-cangjie (2.4-5) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control: Bump debhelper compat to v13.
+
+  [ Changwoo Ryu ]
+  * debian/patches:
+    + 0001-install-engine-to-correct-dir.diff: Use /usr/libexec instead of
+      /usr/lib/ibus. (Closes: #955227)
+
+ -- Boyuan Yang <byang@debian.org>  Wed, 28 Sep 2022 14:29:33 -0400
+
+ibus-cangjie (2.4-4) unstable; urgency=high
+
+  * Team upload.
+  * debian/control:
+    + Bump Standards-Version to 4.4.1.
+  * debian/patches:
+    + Refresh patches.
+    + Add patches from upstream to fix regression on crashing of
+      ibus-setup-cangjie. (Closes: #946500)
+
+ -- Boyuan Yang <byang@debian.org>  Wed, 18 Dec 2019 11:09:36 -0500
+
+ibus-cangjie (2.4-3) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control:
+    + Bump Standards-Version to 4.4.0.
+    + Update homepage to use the correct one on GitHub pages.
+    + Bump debhelper compat to v12.
+
+ -- Boyuan Yang <byang@debian.org>  Sun, 29 Sep 2019 14:02:52 -0400
+
+ibus-cangjie (2.4-2) unstable; urgency=medium
+
+  * Team upload.
+  * debian/control:
+    + Remove deprecated "extra" package priority.
+    + Update maintainer and use Debian Input Method Team email address.
+      (Closes: #899541)
+    + Bump debhelper compat to v11.
+    + Bump Standards-Version to 4.2.1.
+    + Update Vcs-* fields and use the git repo under Salsa
+      input-method team.
+    + Remove useless X-Python-Version field.
+  * debian/rules:
+    + Enable full hardening.
+    + Use "dh_missing --fail-missing".
+  * debian/patches:
+    + Refresh existing patches.
+    + Cherry-pick patch from upstream trunk to properly import gi modules.
+    + Add a patch to fix lintian error on appdata.
+  * debian/copyright:
+    + Fix insecure uri for Format field and update link to upstream project.
+
+ -- Boyuan Yang <byang@debian.org>  Mon, 12 Nov 2018 20:34:50 -0500
+
+ibus-cangjie (2.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version.
+
+ -- ChangZhuo Chen (陳昌倬) <czchen@gmail.com>  Wed, 29 Apr 2015 19:17:16 +0800
+
+ibus-cangjie (2.2-2) unstable; urgency=medium
+
+  [ChangZhuo Chen]
+  * Change Architecture to all.
+    Thanks to Scott Kitterman (Closes: #750881)
+  * Add dh-python as Build-Depends.
+    Thanks to Osamu Aoki
+
+  [Anthony Wong]
+  * Install engine to /usr/lib/ibus (Closes: #746978)
+
+ -- Anthony Wong <yp@anthonywong.net>  Sun, 24 Aug 2014 01:49:55 +0800
+
+ibus-cangjie (2.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add ChangZhuo Chen (陳昌倬) as uploader
+  * Use xvfb-run to setup test environment (Closes: #746099)
+  * Add debian/gbp.conf
+
+ -- ChangZhuo Chen (陳昌倬) <czchen@gmail.com>  Fri, 30 May 2014 20:39:24 +0800
+
+ibus-cangjie (2.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Anthony Wong <anthony.wong@ubuntu.com>  Sat, 15 Feb 2014 18:36:41 +0800
+
+ibus-cangjie (2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update debian/watch to use new upstream URL.
+  * Depends python3-pycangjie (>= 1.0)
+
+ -- Anthony Wong <anthony.wong@ubuntu.com>  Mon, 06 Jan 2014 02:57:07 +0800
+
+ibus-cangjie (1.0-1) unstable; urgency=low
+
+  [ Anthony Wong ]
+  * New upstream version 1.0.
+  * Upload to Debian (Closes: #712684)
+
+  [ Anthony Fok ]
+  * Update debian/copyright to reflect upstream's relicensing from
+    LGPL-3+ to GPL-3+ (as of git20130413).  Thanks to Paul Tagliamonte
+    of the ftpmaster team for catching the change!
+  * Change Homepage field to http://ibus-cangjie.opensource.hk/
+  * Add myself to the Uploaders field
+  * Add debian/watch
+  * Use dh-autoreconf to avoid potential build problem when timestamps differ.
+
+ -- Anthony Wong <anthony.wong@ubuntu.com>  Sun, 22 Sep 2013 17:50:27 +0800
+
+ibus-cangjie (0.0.1~git20130325-0ubuntu2) raring; urgency=low
+
+  * Fix maintainers field in debian/control to
+    Ubuntu Developers. (LP: #1167265)
+  * Add an dependency of gir1.2-ibus-1.0 (LP: #1189085)
+  * Cherry-pick patch setup: Declare the setup in the XML components
+    (upstream commit no.: a85d297bb395f38c4ec5022acc6d641a695b4ab4)
+    requested by upstream. (LP: #1189083)
+
+ -- Howard Chan <smartboyhw@gmail.com>  Mon, 08 Jul 2013 21:24:42 +0800
+
+ibus-cangjie (0.0.1~git20130315-0ubuntu1) raring; urgency=low
+
+  * Initial release.
+
+ -- Anthony Wong <anthony.wong@ubuntu.com>  Thu, 14 Mar 2013 02:55:52 +0800

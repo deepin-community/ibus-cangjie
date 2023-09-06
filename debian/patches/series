@@ -1,0 +1,4 @@
+0001-install-engine-to-correct-dir.diff
+0002-Properly-import-gi-modules-to-avoid-PyGIWarning.patch
+0003-data-Update-appdata-location-format-and-content.patch
+0004-src-setup.py-Require-correct-Gio-and-GLib-version.patch

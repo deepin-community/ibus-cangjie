@@ -1,0 +1,124 @@
+From: wnereiz <wnereiz@member.fsf.org>
+Date: Mon, 15 Oct 2018 09:31:45 +0800
+Subject: Properly import gi modules to avoid PyGIWarning
+
+Fix #86
+---
+ scripts/ibus-engine-cangjie.in | 3 +++
+ scripts/ibus-setup-cangjie.in  | 4 ++++
+ src/__init__.py                | 3 +++
+ src/engine.py                  | 3 +++
+ src/setup.py                   | 6 ++++++
+ tests/test_cangjie.py          | 3 +++
+ tests/test_prefs.py            | 3 +++
+ 7 files changed, 25 insertions(+)
+
+diff --git a/scripts/ibus-engine-cangjie.in b/scripts/ibus-engine-cangjie.in
+index 2113b66..08d959c 100644
+--- a/scripts/ibus-engine-cangjie.in
++++ b/scripts/ibus-engine-cangjie.in
+@@ -20,6 +20,9 @@
+ import argparse
+ import locale
+ 
++import gi
++gi.require_version('IBus','1.0')
++
+ from gi.repository import IBus
+ 
+ from ibus_cangjie import IMApp
+diff --git a/scripts/ibus-setup-cangjie.in b/scripts/ibus-setup-cangjie.in
+index 99fa5da..7146b2e 100644
+--- a/scripts/ibus-setup-cangjie.in
++++ b/scripts/ibus-setup-cangjie.in
+@@ -32,6 +32,10 @@ GLib.set_prgname('ibus-setup-%s' % args.engine)
+ 
+ import locale
+ 
++import gi
++gi.require_version('Gtk','3.0')
++gi.require_version('IBus','1.0')
++
+ from gi.repository import Gtk
+ from gi.repository import IBus
+ 
+diff --git a/src/__init__.py b/src/__init__.py
+index a4db2bb..a4aa551 100644
+--- a/src/__init__.py
++++ b/src/__init__.py
+@@ -16,6 +16,9 @@
+ # along with ibus-cangjie.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ 
++import gi
++gi.require_version('IBus','1.0')
++
+ from gi.repository import GLib
+ from gi.repository import GObject
+ from gi.repository import IBus
+diff --git a/src/engine.py b/src/engine.py
+index df05d25..a26c0c5 100644
+--- a/src/engine.py
++++ b/src/engine.py
+@@ -22,6 +22,9 @@ __all__ = ["EngineCangjie", "EngineQuick"]
+ import gettext
+ from operator import attrgetter
+ 
++import gi
++gi.require_version('IBus','1.0')
++
+ from gi.repository import Gio
+ from gi.repository import IBus
+ 
+diff --git a/src/setup.py b/src/setup.py
+index b3125e3..04b087b 100644
+--- a/src/setup.py
++++ b/src/setup.py
+@@ -18,6 +18,12 @@
+ 
+ from gettext import dgettext
+ 
++import gi
++gi.require_version('Gdk','3.0')
++gi.require_version('Gio','3.0')
++gi.require_version('GLib','3.0')
++gi.require_version('Gtk','3.0')
++
+ from gi.repository import Gdk
+ from gi.repository import Gio
+ from gi.repository import GLib
+diff --git a/tests/test_cangjie.py b/tests/test_cangjie.py
+index d20c5b2..81be381 100644
+--- a/tests/test_cangjie.py
++++ b/tests/test_cangjie.py
+@@ -19,6 +19,9 @@
+ import os
+ import unittest
+ 
++import gi
++gi.require_version('IBus','1.0')
++
+ from gi.repository import IBus
+ 
+ from ibus_cangjie.engine import *
+diff --git a/tests/test_prefs.py b/tests/test_prefs.py
+index 733ab54..5dbc0b6 100644
+--- a/tests/test_prefs.py
++++ b/tests/test_prefs.py
+@@ -33,6 +33,8 @@ def has_graphical():
+     automatically skip the tests which can't run without.
+     """
+     try:
++        import gi
++        gi.require_version('Gtk', '3.0')
+         from gi.repository import Gtk
+ 
+     except RuntimeError as e:
+@@ -43,6 +45,7 @@ def has_graphical():
+     # But other platforms (e.g Fedora 21) can import Gtk just fine even
+     # without a display...
+ 
++    gi.require_version('Gdk', '3.0')
+     from gi.repository import Gdk
+ 
+     if Gdk.Display.get_default() is None:

@@ -1,0 +1,78 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Mon, 12 Nov 2018 20:11:18 -0500
+Subject: data: Update appdata location, format and content
+
+According to https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html ,
+we should not install appdata to /usr/share/appdata anymore.
+Besides, the appdata file format is updated as well.
+
+The broken homepage information in appdata xml is also fixed.
+---
+ Makefile.am                 |  2 +-
+ data/cangjie.appdata.xml.in | 12 ++++++------
+ data/quick.appdata.xml.in   | 12 ++++++------
+ 3 files changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 1142421..0213515 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -28,7 +28,7 @@ ibus_cangjie_datadir = $(pkgdatadir)
+ @INTLTOOL_XML_RULE@
+ appdata_in_files = data/cangjie.appdata.xml.in data/quick.appdata.xml.in
+ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+-appdatadir = $(datadir)/appdata
++appdatadir = $(datadir)/metainfo
+ 
+ component_in_in_files = data/cangjie.xml.in.in data/quick.xml.in.in
+ component_DATA = $(component_in_in_files:.xml.in.in=.xml)
+diff --git a/data/cangjie.appdata.xml.in b/data/cangjie.appdata.xml.in
+index 63fba3c..fe6ede6 100644
+--- a/data/cangjie.appdata.xml.in
++++ b/data/cangjie.appdata.xml.in
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<application>
+-  <id type="inputmethod">cangjie.xml</id>
+-  <licence>CC0</licence>
++<component type="inputmethod">
++  <id>cangjie.xml</id>
++  <metadata_license>CC0-1.0</metadata_license>
+   <_name>Cangjie</_name>
+   <_summary>Cangjie input method</_summary>
+   <description>
+@@ -12,6 +12,6 @@
+        experience for people of the SAR by default, but provide useful options
+        for others.</_p>
+   </description>
+-  <url type="homepage">http://cangjians.github.io/ibus-cangjie</url>
+-  <updatecontact>hklug@googlegroups.com</updatecontact>
+-</application>
++  <url type="homepage">https://cangjians.github.io/projects/ibus-cangjie/</url>
++  <update_contact>hklug@googlegroups.com</update_contact>
++</component>
+diff --git a/data/quick.appdata.xml.in b/data/quick.appdata.xml.in
+index a34655e..5bad5d8 100644
+--- a/data/quick.appdata.xml.in
++++ b/data/quick.appdata.xml.in
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<application>
+-  <id type="inputmethod">quick.xml</id>
+-  <licence>CC0</licence>
++<component type="inputmethod">
++  <id>quick.xml</id>
++  <metadata_license>CC0-1.0</metadata_license>
+   <_name>Quick</_name>
+   <_summary>Quick input method</_summary>
+   <description>
+@@ -13,6 +13,6 @@
+        experience for people of the SAR by default, but provide useful options
+        for others.</_p>
+   </description>
+-  <url type="homepage">http://cangjians.github.io/ibus-cangjie</url>
+-  <updatecontact>hklug@googlegroups.com</updatecontact>
+-</application>
++  <url type="homepage">https://cangjians.github.io/projects/ibus-cangjie/</url>
++  <update_contact>hklug@googlegroups.com</update_contact>
++</component>
