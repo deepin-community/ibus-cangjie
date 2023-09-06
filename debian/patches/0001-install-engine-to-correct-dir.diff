@@ -1,0 +1,42 @@
+Description: ibus-engine-cangjie should be in /usr/libexec
+ Per FHS 3.0, internal executables should be installed to /usr/libexec.
+ .
+ It was in /usr/lib/ibus (https://bugs.debian.org/746978) for FHS 2.0
+ but not anymore.
+Author: Changwoo Ryu <cwryu@debian.org>, Anthony Wong <yp@anthonywong.net>
+Bug: https://bugs.debian.org/955227
+Last-Update: 2020-04-04
+---
+ Makefile.am | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -8,8 +8,7 @@
+ # -- scripts/ ------------------------
+ bin_SCRIPTS = scripts/ibus-setup-cangjie
+ 
+-pkglibexec_SCRIPTS = scripts/ibus-engine-cangjie
+-libexecdir = $(prefix)/lib
++libexec_SCRIPTS = scripts/ibus-engine-cangjie
+ 
+ scripts/ibus-%-cangjie: scripts/ibus-%-cangjie.in Makefile
+ 	$(AM_V_GEN) \
+@@ -38,7 +37,7 @@
+ 	sed -e 's&@_VERSION@&$(VERSION)&g' \
+ 	    -e 's&@BINDIR@&$(bindir)&g' \
+ 	    -e 's&@ICON16DIR@&$(icon16dir)&g' \
+-	    -e 's&@PKGLIBEXECDIR@&$(pkglibexecdir)&g' $< > $@
++	    -e 's&@PKGLIBEXECDIR@&$(libexecdir)&g' $< > $@
+ 
+ gsettings_in_files = data/org.cangjians.ibus.cangjie.gschema.xml.in data/org.cangjians.ibus.quick.gschema.xml.in
+ gsettings_SCHEMAS = $(gsettings_in_files:.xml.in=.xml)
+@@ -115,7 +114,7 @@
+ 	$(desktop_in_files) \
+ 	$(gsettings_SCHEMAS) \
+ 	$(bin_SCRIPTS) \
+-	$(pkglibexec_SCRIPTS) \
++	$(libexec_SCRIPTS) \
+ 	src/*.pyc \
+ 	tests/run_tests \
+ 	data/gschemas.compiled \

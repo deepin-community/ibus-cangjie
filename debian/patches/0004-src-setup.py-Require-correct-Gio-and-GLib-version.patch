@@ -1,0 +1,26 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Wed, 18 Dec 2019 10:58:08 -0500
+Subject: src/setup.py: Require correct Gio and GLib version
+
+This would closes: #94.
+
+Forwarded: https://github.com/Cangjians/ibus-cangjie/pull/97
+---
+ src/setup.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/setup.py b/src/setup.py
+index 04b087b..9265b00 100644
+--- a/src/setup.py
++++ b/src/setup.py
+@@ -20,8 +20,8 @@ from gettext import dgettext
+ 
+ import gi
+ gi.require_version('Gdk','3.0')
+-gi.require_version('Gio','3.0')
+-gi.require_version('GLib','3.0')
++gi.require_version('Gio','2.0')
++gi.require_version('GLib','2.0')
+ gi.require_version('Gtk','3.0')
+ 
+ from gi.repository import Gdk
